@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import CounterPlus from './CounterPlus'
+import CounterMinus from './CounterMinus';
+import UserInput from './UserInput';
 
 function App() {
+  const[count, setCount] = useState(0)
+
+  const handlePlusClick = () => {
+    setCount(count + 1)
+  }
+
+  const handleMinusClick = () => {
+    setCount(count - 1)
+  }
+
+  const handleInitialCount = (userInput) => {
+    setCount(userInput)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p> The value of count is: {count}</p>
+      <CounterPlus onClick={handlePlusClick} />
+      <CounterMinus onClick={handleMinusClick} />
+      <UserInput handleInitialCount={handleInitialCount}/>
     </div>
   );
 }
